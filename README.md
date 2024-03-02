@@ -2,11 +2,10 @@
  This is a ready to use Boiler plate Template for djanog 
 
 ### Tags ###
-[Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) 
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-[Flowbite](https://img.shields.io/badge/Flowbite-%238E63CE.svg?style=for-the-badge&logo=Flowbite&logoColor=white) ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
-
+![Flowbite](https://img.shields.io/badge/Flowbite-%238E63CE.svg?style=for-the-badge&logo=Flowbite&logoColor=white) 
 
 # Installation #
 [_Point_To_Be_noted_] Install node and npx packages after creating djanog project and app.
