@@ -43,9 +43,9 @@ Now we are going to install LTS version of Django. To do that, run the following
 pip install django==4.2.10
 ``` 
 
-### [Install TailwindCSS] (https://flowbite.com/docs/getting-started/django/#install-flowbite)###
+### Install TailwindCSS ###
 
-As recommended by the TailwindCSS documentation, we will use `npm` to install TailwindCSS. If you don't have `npm` installed yet, you can download it from the official website.[Node LTE 20.11.1](https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz)
+As recommended by the [TailwindCSS](https://flowbite.com/docs/getting-started/django/#install-flowbite) documentation, we will use `npm` to install TailwindCSS. If you don't have `npm` installed yet, you can download it from the official website.[Node LTE 20.11.1](https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz)
  
 Restart your terminal after installing `npm` to make sure it's available.
 ```bash
@@ -214,3 +214,61 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 ```
+
+Create a new views.py file inside myapp/ next to urls.py and add the following content:
+```python
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'index.html')
+Import the newly created view instance inside the urls.py file by adding the following code:
+from .views import index
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', index, name='index')
+]
+```
+Create a new _base.html file inside the templates/ directory:
+```html
+{% load compress %}
+{% load static %}
+<!-- templates/_base.html -->
+
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django + Tailwind CSS + Flowbite</title>
+
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% endcompress %}
+
+</head>
+
+<body class="bg-green-50">
+    <div class="container mx-auto mt-4">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+
+</html>
+Create an index.html file that will be served as the homepage:
+<!-- templates/index.html -->
+
+{% extends "_base.html" %}
+
+{% block content %}
+  <h1 class="text-3xl text-green-800">Django + Tailwind CSS + Flowbite</h1>
+{% endblock content %}
+```
+Finally, create a local server instance by running the following command:
+python manage.py runserver
