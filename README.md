@@ -43,9 +43,10 @@ Now we are going to install LTS version of Django. To do that, run the following
 pip install django==4.2.10
 ``` 
 
-### Install TailwindCSS ###
+### [Install TailwindCSS] (https://flowbite.com/docs/getting-started/django/#install-flowbite)###
 
-As recommended by the TailwindCSS documentation, we will use `npm` to install TailwindCSS. If you don't have `npm` installed yet, you can download it from the official website.[Node LTE 20.11.1](https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz) 
+As recommended by the TailwindCSS documentation, we will use `npm` to install TailwindCSS. If you don't have `npm` installed yet, you can download it from the official website.[Node LTE 20.11.1](https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz)
+ 
 Restart your terminal after installing `npm` to make sure it's available.
 ```bash
 node -v
