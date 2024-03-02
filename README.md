@@ -6,6 +6,20 @@
 ![Node LTS](https://img.shields.io/badge/Node-20.11.1-333333)
 
 # Installation #
+[_Point_To_Be_noted_] Install node and npx packages after creating djanog project and app.
+The only this major thing to do is to install the TailwindCSS and Flowbit and add some config ot settings.py and tailwind.config.js
+
+```bash 
+pip install -r requirements.txt
+```
+```bash
+npm install
+```
+Try running `rm -rf node_modules` and `npm cache clean` and `do npm install` again if you are facing any issues.
+
+First Clean the cache `npm cache clean --force` Then Install It `npm install` 
+
+# If Want to start from scratch #
 
 ## Djanog ##
 
@@ -13,7 +27,7 @@ As of today the Long Term Support(LTS) version is 4.2.10  [February 2024]
 
 ### Create a virtual environment ###
 
-First, you will need to install `virtualenv` if you don't have it yet. Its convenient to use virtual environments to keep your dependencies separate and organized.
+First, you will need to install `virtualenv` if you don"t have it yet. Its convenient to use virtual environments to keep your dependencies separate and organized.
 
 You can install it via pip:
 
@@ -45,9 +59,9 @@ pip install django==4.2.10
 
 ### Install TailwindCSS ###
 
-As recommended by the [TailwindCSS](https://flowbite.com/docs/getting-started/django/#install-flowbite) documentation, we will use `npm` to install TailwindCSS. If you don't have `npm` installed yet, you can download it from the official website.[Node LTE 20.11.1](https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz)
+As recommended by the [TailwindCSS](https://flowbite.com/docs/getting-started/django/#install-flowbite) documentation, we will use `npm` to install TailwindCSS. If you don"t have `npm` installed yet, you can download it from the official website.[Node LTE 20.11.1](https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz)
  
-Restart your terminal after installing `npm` to make sure it's available.
+Restart your terminal after installing `npm` to make sure it"s available.
 ```bash
 node -v
 ```
@@ -68,7 +82,7 @@ npx tailwindcss init
 ```js
 module.exports = {
   content: [
-      './templates/**/*.html'
+      "./templates/**/*.html"
   ],
   theme: {
     extend: {},
@@ -76,12 +90,7 @@ module.exports = {
   plugins: [],
 }
 ```
-{there is a file called tailwind.config.js in the root directory of the project}
-{there a catch while configuringit for djanog, the below is on doc of tailwindcss}
-{Then below config is have tested and working for djanog}
 
-```js
-```
 
 ### Install Flowbit ###
 
@@ -98,7 +107,7 @@ npm install flowbite
 module.exports = {
 
     plugins: [
-        require('flowbite/plugin')
+        require("flowbite/plugin")
     ]
 
 }
@@ -107,8 +116,8 @@ module.exports = {
 ```js
 module.exports = {
   content: [
-      './templates/**/*.html',
-      './node_modules/flowbite/**/*.js'
+      "./templates/**/*.html",
+      "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},
@@ -116,6 +125,31 @@ module.exports = {
   plugins: [],
 }
 ```
+
+{there is a file called tailwind.config.js in the root directory of the project}
+{there a catch while configuringit for djanog, the below is on doc of tailwindcss}
+{Then below config is have tested and working for djanog}
+
+```js
+/** @type {import("tailwindcss").Config} */
+module.exports = {
+  darkMode: "class",
+  darkMode: "media",
+  darkMode: "selector", // or "media" or "class" this is for dark mode see doc. or you can ignore it 
+
+  content: [
+    "../**/*.html",
+    "../node_modules/flowbite/**/*.js",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require("flowbite/plugin"),
+  ],
+}
+```
+
 4. nclude Flowbite’s JavaScript file inside the _base.html file just before the end of the <body> tag using CDN or by including it directly from the node_modules/ folder:
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
@@ -156,6 +190,15 @@ Where `app` is the name of your app. You can replace it with your preferred name
 
 1. Go to your app and create a new folder called `static/src/output.css and input.css` 
 and `templates/base.html`:
+
+in input.css
+```css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+```
 
 1.1 There is one more this to do before point number 2, we need to install compressor to compress the css and js files
 ```bash
@@ -208,67 +251,31 @@ COMPRESS_ENABLED = True
 # STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
 
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     # other finders..
-    'compressor.finders.CompressorFinder',
+    "compressor.finders.CompressorFinder",
 )
 ```
 
-Create a new views.py file inside myapp/ next to urls.py and add the following content:
-```python
-from django.shortcuts import render
+After Configuring See the Project It Self [Considering_you_have_basic_knowledge_of_Django_TailwindCSS_and_Flowbite]
 
-def index(request):
-    return render(request, 'index.html')
-Import the newly created view instance inside the urls.py file by adding the following code:
-from .views import index
+Now run the following command to start the server:
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', index, name='index')
-]
-```
-Create a new _base.html file inside the templates/ directory:
-```html
-{% load compress %}
-{% load static %}
-<!-- templates/_base.html -->
-
-{% load compress %}
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django + Tailwind CSS + Flowbite</title>
-
-    {% compress css %}
-    <link rel="stylesheet" href="{% static 'src/output.css' %}">
-    {% endcompress %}
-
-</head>
-
-<body class="bg-green-50">
-    <div class="container mx-auto mt-4">
-        {% block content %}
-        {% endblock content %}
-    </div>
-</body>
-
-</html>
-Create an index.html file that will be served as the homepage:
-<!-- templates/index.html -->
-
-{% extends "_base.html" %}
-
-{% block content %}
-  <h1 class="text-3xl text-green-800">Django + Tailwind CSS + Flowbite</h1>
-{% endblock content %}
-```
-Finally, create a local server instance by running the following command:
+```bash
 python manage.py runserver
+```
+>Then open your browser and go to `http://127.0.0.1:8000/` to see the project running.
+
+> Run the following command to watch for changes and compile the Tailwind CSS code: [have_to_give_proper_path]
+```bash
+> npx tailwindcss -i ./app/static/src/input.css -o ./app/static/src/output.css --watch
+```
+now you can see the project running with the TailwindCSS and Flowbite.
+
+# Rsults #
+
+![Image Description](./img/1.png)
+![Image Description](./img/2.png)
+![Image Description](./img/3.png)
+![Image Description](./img/4.png)
