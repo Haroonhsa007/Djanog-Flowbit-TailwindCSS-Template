@@ -1,3 +1,6 @@
+### files after readme are just for github static deployment [Ref to actual working files](https://github.com/Flowbite/flowbite-tailwindcss-template)
+
+
 # Djanog Flowbit TailwindCSS Template
  This is a ready to use Boiler plate Template for djanog 
 
